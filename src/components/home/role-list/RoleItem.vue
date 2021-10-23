@@ -16,6 +16,14 @@
       <p class="card-text">
         {{ item.description }}
       </p>
+
+      <br />
+
+      <div class="row">
+        <div class="col-12 users">
+          <user-item :key="user.id" v-for="user in item.users" :user="user" />
+        </div>
+      </div>
     </div>
     <div class="card-footer">
       <div v-if="item.editable">
@@ -50,8 +58,13 @@ import { UserRoleInterface } from "@app/contract/data/user.role.interface";
 import moment from "moment";
 import { StoresEnum } from "@app/enums/stores.enum";
 import { StoreActionsEnums } from "@app/enums/store.actions.enums";
+import UserItem from "@app/components/home/role-list/UserItem.vue";
 
-@Component
+@Component({
+  components: {
+    UserItem,
+  },
+})
 export default class RoleItem extends Vue {
   @Prop({
     required: true,

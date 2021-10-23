@@ -39,10 +39,12 @@ export default class EditRole extends Vue {
     if (role === null) {
       this.notifier.add("Role not found", "warning");
       this.$router.push({ name: "Home" });
-      return;
+    } else if (!role.editable) {
+      this.notifier.add("Role is not editable", "warning");
+      this.$router.push({ name: "Home" });
+    } else {
+      this.item = role;
     }
-
-    this.item = role;
   }
 
   afterSave(model: UserRoleInterface) {

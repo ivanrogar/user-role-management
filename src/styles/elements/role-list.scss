@@ -18,5 +18,11 @@
     .lock {
       float: right;
     }
+
+    .users {
+      .avatar {
+        border-radius: 50%;
+      }
+    }
   }
 }
