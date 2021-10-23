@@ -23,13 +23,21 @@
               {{ $t("Type") }}
             </label>
             <div class="col-sm-12">
-              <input
-                type="text"
+              <select
                 class="form-control"
                 id="type"
                 v-model="model.type"
                 required
-              />
+              >
+                <option
+                  v-for="roleType in getRoleTypes()"
+                  :selected="model.type === roleType.value"
+                  :key="roleType.key"
+                  :value="roleType.value"
+                >
+                  {{ roleType.label }}
+                </option>
+              </select>
             </div>
           </div>
 
@@ -96,6 +104,7 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { UserRoleInterface } from "@app/contract/data/user.role.interface";
 import { UserRoleService } from "@app/service/user.role.service";
+import { RoleTypeEnum } from "@app/enums/role.type.enum";
 
 @Component
 export default class RoleForm extends Vue {
@@ -129,6 +138,26 @@ export default class RoleForm extends Vue {
       this.userRoleService.save(this.model);
       this.$emit("after-save", Object.assign({}, this.model));
     }
+  }
+
+  getRoleTypes() {
+    return [
+      {
+        value: "",
+        label: this.$t("Please select"),
+        key: 1,
+      },
+      {
+        value: RoleTypeEnum.ADMIN,
+        label: this.$t("Admin"),
+        key: 2,
+      },
+      {
+        value: RoleTypeEnum.JOB_ADMIN,
+        label: this.$t("Job Admin"),
+        key: 3,
+      },
+    ];
   }
 }
 </script>

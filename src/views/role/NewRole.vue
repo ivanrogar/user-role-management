@@ -27,6 +27,7 @@ export default class NewRole extends Vue {
   defaultItem: UserRoleInterface = {
     editable: true,
     active: true,
+    type: "",
   };
 
   private notifier: Notifier;
