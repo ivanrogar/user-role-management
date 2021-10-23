@@ -1,0 +1,22 @@
+.role-list {
+  .role-item {
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    .inactive {
+      float: right;
+    }
+
+    .links {
+      float: right;
+
+      a {
+        padding: 5px;
+      }
+    }
+
+    .lock {
+      float: right;
+    }
+  }
+}
